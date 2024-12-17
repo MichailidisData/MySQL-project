@@ -212,7 +212,7 @@ WITH covid_2020_cte AS
     WHERE `Date_reported` LIKE '2024%' 	
     GROUP BY Country 
     )
-    SELECT c_20.Country,
+SELECT c_20.Country,
 	CASE 
 	    WHEN deaths_2020 = 0 THEN deaths_2021 / 1
             WHEN deaths_2020 != 0 THEN deaths_2021 / deaths_2020
@@ -229,14 +229,14 @@ WITH covid_2020_cte AS
 	    WHEN deaths_2023 = 0 THEN deaths_2024 / 1
             WHEN deaths_2023 != 0 THEN deaths_2024 / deaths_2023
 	END AS death_percentage_23_24
-    FROM covid_2020_cte c_20
-    JOIN covid_2021_cte c_21
-    ON c_20.Country = c_21.Country
-    JOIN covid_2022_cte c_22
-    ON c_21.Country = c_22.Country
-    JOIN covid_2023_cte c_23
-    ON c_22.Country = c_23.Country
-    JOIN covid_2024_cte c_24
-    ON c_23.Country = c_24.Country
-    ORDER BY c_20.Country;
+FROM covid_2020_cte c_20
+JOIN covid_2021_cte c_21
+ON c_20.Country = c_21.Country
+JOIN covid_2022_cte c_22
+ON c_21.Country = c_22.Country
+JOIN covid_2023_cte c_23
+ON c_22.Country = c_23.Country
+JOIN covid_2024_cte c_24
+ON c_23.Country = c_24.Country
+ORDER BY c_20.Country;
     
